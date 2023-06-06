@@ -1,0 +1,22 @@
+local function createRainbowList(lastHue, text)
+    local screengui = Instance.new("ScreenGui")
+    screengui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    local parentFrame = Instance.new("Frame")
+    parentFrame.Size = UDim2.new(0.5, 0, 0.5, 0)
+    parentFrame.Position = UDim2.new(0.25, 0, 0.25, 0)
+    parentFrame.Parent = screengui
+
+    local uilistlayout = Instance.new("UIListLayout")
+    uilistlayout.Parent = parentFrame
+
+    for hue = lastHue or 0, 1, 0.1 do
+        local label = Instance.new("TextLabel")
+        label.Text = text
+        label.TextColor3 = Color3.fromHSV(hue, 1, 1)
+        label.Size = UDim2.new(1, 0, 0, 30)
+        label.Parent = parentFrame
+        lastHue = hue
+    end
+    return lastHue
+end
