@@ -41,31 +41,33 @@ Tab1Section:NewToggle("InfJump", "ong so cool!", function(callback)
             game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
         end
     end)
-else
-    InfiniteJumpEnabled = false
-    end
 end)
-local Enabled = false
+local EnabledTpwalk = false
+local Multiplier = {["Value"] = 0.057}
 Tab1Section:NewToggle("Tpwalk", "ong so cool!", function(callback)
     if callback then
-        Enabled = true
+        EnabledTpwalk = true
     spawn(function()
         repeat
             task.wait()
-            if isAlive(plr) then
                 local hrp = lplr.Character:FindFirstChild("HumanoidRootPart")
                 local hum = lplr.Character:FindFirstChild("Humanoid")
                 if isnetworkowner(hrp) and hum.MoveDirection.Magnitude > 0 then
                     lplr.Character:TranslateBy(hum.MoveDirection * Multiplier["Value"])
                 end
-            end
-        until not CFrameSpeed
+        until not EnabledTpwalk
     end)
         else
-    Enabled = false
+        EnabledTpwalk = false
     end
 end)
 
 Tab1Section:NewTextBox("Tpwalk Speed", "Working or no?", function(txt)
-	Multiplier["Value"] = txt
+    if EnabledTpwalk == true then
+	    Multiplier["Value"] = txt
+    end
 end)
+Tab1Section:NewButton("Dex V5", "gui is now cooler", function(txt)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+end)
+
