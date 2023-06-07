@@ -2,6 +2,18 @@ shared.MaxUiXAnyGameLoaded = true
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MaxlaserTechAlt/MaxlaserTechAlt.github.io/main/KavoCustom.lua"))()
 
 local Window = Library.CreateLib("MaxUi X | AnyGame", "Luna")
+local lplr = game.Players.LocalPlayer
+local player = game:GetService("Players")
+local cam = workspace.CurrentCamera
+local networkownertick = tick()
+local isnetworkowner = isnetworkowner or function(part)
+  if gethiddenproperty(part, "NetworkOwnershipRule") == Enum.NetworkOwnership.Manual then 
+      sethiddenproperty(part, "NetworkOwnershipRule", Enum.NetworkOwnership.Automatic)
+      networkownertick = tick() + 8
+  end
+  return networkownertick <= tick()
+end
+
 
 local Tab1 = Window:NewTab("Main")
 local Tab2 = Window:NewTab("Credits")
@@ -33,4 +45,27 @@ else
     InfiniteJumpEnabled = false
     end
 end)
+local Enabled = false
+Tab1Section:NewToggle("Tpwalk", "ong so cool!", function(callback)
+    if callback then
+        Enabled = true
+    spawn(function()
+        repeat
+            task.wait()
+            if isAlive(plr) then
+                local hrp = lplr.Character:FindFirstChild("HumanoidRootPart")
+                local hum = lplr.Character:FindFirstChild("Humanoid")
+                if isnetworkowner(hrp) and hum.MoveDirection.Magnitude > 0 then
+                    lplr.Character:TranslateBy(hum.MoveDirection * Multiplier["Value"])
+                end
+            end
+        until not CFrameSpeed
+    end)
+        else
+    Enabled = false
+    end
+end)
 
+Tab1Section:NewTextBox("Tpwalk Speed", "Working or no?", function(txt)
+	Multiplier["Value"] = txt
+end)
