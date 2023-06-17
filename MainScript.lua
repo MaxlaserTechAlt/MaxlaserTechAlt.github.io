@@ -10,6 +10,9 @@ if not isfolder("MaxUiX/CustomModules") then
 if not isfolder("MaxUiX/Assets") then
 	makefolder("MaxUiX/Assets")
     end
+if not isfolder("MaxUiX/Profiles") then
+	makefolder("MaxUiX/Profiles")
+    end
 
 local TeleportString = [[
   loadstring(game:HttpGet("https://raw.githubusercontent.com/MaxlaserTechAlt/MaxlaserTechAlt.github.io/main/MainScript.lua", true))
