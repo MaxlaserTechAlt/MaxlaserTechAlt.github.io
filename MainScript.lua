@@ -35,6 +35,7 @@ function MainLoaded()
  loadstring(customModuleScript)()
  end)
  if not success then
+print("failed to load module")
  print("Failed To Loaded Modules: " .. tostring(error))
  loadstring(AnyGame)()
  end
