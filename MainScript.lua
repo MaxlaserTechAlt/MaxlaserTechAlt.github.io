@@ -24,28 +24,34 @@ local AnyGame = [[
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MaxlaserTechAlt/MaxlaserTechAlt.github.io/main/CustomModules/AnyGame.lua",
 true))()
 ]]
-
+local BedwarsLobby = [[
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MaxlaserTechAlt/MaxlaserTechAlt.github.io/main/CustomModules/AnyGame.lua",
+true))()
+]]
 
 function MainLoaded()
- local customModuleURL = "https://raw.githubusercontent.com/MaxlaserTechAlt/MaxlaserTechAlt.github.io/main/CustomModules/"..game.PlaceId..".lua"
- local customModuleScript = game:HttpGet(customModuleURL, true)
- if customModuleScript then
- writefile("MaxUiX/CustomModules/" .. game.PlaceId .. ".lua", customModuleScript)
- local success, error = pcall(function()
- loadstring(customModuleScript)()
- end)
- if not success then
-print("failed to load module")
- print("Failed To Loaded Modules: " .. tostring(error))
- loadstring(AnyGame)()
- end
- else
- print("No custom module found for this PlaceId")
- loadstring(AnyGame)()
- end
+local customModuleURL = "https://raw.githubusercontent.com/MaxlaserTechAlt/MaxlaserTechAlt.github.io/main/CustomModules/" .. game.PlaceId .. ".lua"
+local customModuleScript = game:HttpGet(customModuleURL, true)
+if game.PlaceId == 6872274481 or game.PlaceId == 8560631822 or game.PlaceId == 8444591321 then
+	local customModuleURL = "https://raw.githubusercontent.com/MaxlaserTechAlt/MaxlaserTechAlt.github.io/main/CustomModules/6872274481.lua"
+	local bedwarsgame = game:HttpGet(customModuleURL, true)
+	writefile("MaxUiX/CustomModules/6872274481.lua", bedwarsgame)
+	loadstring(bedwarsgame)()
+	else
+		if game.PlaceId == 6872265039 then
+			local customModuleURL = "https://raw.githubusercontent.com/MaxlaserTechAlt/MaxlaserTechAlt.github.io/main/CustomModules/6872265039.lua"
+			 local bedwarslobby = game:HttpGet(customModuleURL, true)
+			writefile("MaxUiX/CustomModules/6872265039.lua", bedwarslobby)
+			loadstring(bedwarslobby)()
+		else
+		if game.PlaceId == 3956818381 or game.PlaceId == 155615604 then
+			 loadstring(customModuleScript)()
+        else
+            loadstring(AnyGame)()
+        end
+		end
+	end
 end
-
-
 
 task.spawn(function()
   MainLoaded()
