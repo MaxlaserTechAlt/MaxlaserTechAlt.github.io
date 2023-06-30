@@ -399,7 +399,7 @@
         f = 1 - ((f or 15) / 80)
         return Color3.fromHSV(h, math.clamp(s*f, 0, 1), math.clamp(v/f, 0, 1))
     end
-    
+    print("updated")
     --[[ old lighten/darken functions, may revert if contrast gets fucked up
     
         function Library:darken(color, f)
@@ -594,7 +594,6 @@
             wait(0.1)
             core:tween({Size = UDim2.new()}, function()
                 gui.AbsoluteObject:Destroy()
-                shared.MercuryLoaded = false
             end)
         end
     
@@ -604,6 +603,8 @@
     
         closeButton.MouseButton1Click:connect(function()
             closeUI()
+            print("ui closed")
+            shared.MercuryLoaded = false
         end)
     
         local urlBar = core:object("Frame", {
