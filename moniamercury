@@ -594,6 +594,7 @@ function Library:create(options)
 		wait(0.1)
 		core:tween({Size = UDim2.new()}, function()
 			gui.AbsoluteObject:Destroy()
+            shared.MercuryLoaded == false
 		end)
 	end
 
